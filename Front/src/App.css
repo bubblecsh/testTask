@@ -1,38 +1,118 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) ;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    color: white;
+    padding: 0 100px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.search_container {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.search_container input {
+    width: 400px;
+    height: 30px;
+    border-radius: 50px;
+    padding: 15px;
+    outline: none;
+    margin-right: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.search_container button {
+    width: 100px;
+    border-radius: 50px;
+    border: none;
+    color: white;
+    background-color: #1c87c9;
+    cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.error_container {
+    background-color: #ef3b3b;
+    padding: 15px;
+    color: white;
+    text-align: center;
+}
+
+.spin_container {
+    position: relative;
+    height: 100px;
+}
+
+.spin::before {
+    animation: 1.5s linear infinite spinner;
+    animation-play-state: inherit;
+    border: solid 5px #cfd0d1;
+    border-bottom-color: #1c87c9;
+    border-radius: 50%;
+    content: "";
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    will-change: transform;
+}
+
+@keyframes spinner {
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) rotate(360deg);
+    }
+}
+
+.container {
+    display: flex;
+    max-width: max-content;
+    flex-direction: column;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 20px 0;
+}
+
+.container img {
+    max-height: 90vh;
+}
+
+.info_container p {
+    margin: 10px 0;
+}
+
+.bottom_container {
+    padding: 30px 0;
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    grid-column-gap: 30px;
+}
+
+.link_container {
+    align-self: center;
+    justify-self: center;
+}
+
+.link_container button {
+    color: white;
+    background-color: #ef3b3b;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.grid {
+    margin: 0 auto;
 }

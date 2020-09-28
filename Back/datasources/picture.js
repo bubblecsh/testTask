@@ -10,17 +10,28 @@ class PictureAPI extends RESTDataSource {
         request.headers.set('Authorization', 'Client-ID 8f3B1g1L2nLkBtrFrqI-Rcta7XSNSK68VZIezsOifZo')
     }
 
-    async getPictures(currentPage) {
+    async getPictures(currentPage, query) {
         const nextPage = currentPage + 1
-        const response = await this.get(`/photos/?page=${nextPage}&per_page=${20}`)
+        let response
+        let pictures
+
+        if(query === '') {
+            response = await this.get(`/photos/?page=${nextPage}&per_page=${20}`)
+            pictures = response.map(pic => this.pictureReducer(pic))
+        } else {
+
+            response = await this.get(`/search/photos/?query=${query}&page=${nextPage}&per_page=${20}`)
+            pictures = response.results.map(pic => this.pictureReducer(pic))
+        }
         return {
             currentPage: nextPage,
-            pictures: response
+            pictures
         }
     }
 
     async getSinglePicture(id) {
         const response = await this.get(`/photos/${id}`)
+        console.log(response)
         return this.pictureReducer(response)
     }
 
@@ -28,9 +39,9 @@ class PictureAPI extends RESTDataSource {
         return {
             id: picture.id || 0,
             thumbUrl: picture.urls.thumb,
-            fullUrl: picture.urls.full,
+            fullUrl: picture.urls.regular,
             likes: picture.likes,
-            description: picture.description,
+            description: picture.alt_description,
             downloadLink: picture.links.download
         }
     }
