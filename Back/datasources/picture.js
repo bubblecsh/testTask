@@ -31,7 +31,6 @@ class PictureAPI extends RESTDataSource {
 
     async getSinglePicture(id) {
         const response = await this.get(`/photos/${id}`)
-        console.log(response)
         return this.pictureReducer(response)
     }
 

@@ -6,7 +6,7 @@ import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 import {BrowserRouter} from "react-router-dom";
 
 const client = new ApolloClient({
-    uri: 'http://localhost:4000/',
+    uri: 'https://test-task-999.herokuapp.com/',
     cache: new InMemoryCache()
 });
 
