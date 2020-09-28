@@ -14,7 +14,12 @@ const server = new ApolloServer({
     cors: corsOptions,
     dataSources: () => ({
         pictureAPI: new PictureAPI(),
-    })
+    }),
+    context: ({res}) => {
+        res.header('X-Content-Type-Options', 'nosniff')
+        res.header('X-Frame-Options', 'SAMEORIGIN')
+        res.header('X-XSS-Protection', '1')
+    }
 })
 
 
